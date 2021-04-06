@@ -15,13 +15,13 @@ public class AgentController {
 	@Autowired
 	AgentService service;
 	
-	@PostMapping("/create/agent")
+	@PostMapping("/agent")
 	public Agent createAgent(@RequestBody Agent agent)
 	{
 		return service.createAgent(agent);
 	}
 	
-	@GetMapping("/find/allagents")
+	@GetMapping("/agents")
 	public Iterable<Agent> findall()
 	{
 		return service.findAllAgents();
