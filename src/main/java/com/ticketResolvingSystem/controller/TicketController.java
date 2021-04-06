@@ -21,38 +21,38 @@ public class TicketController {
 	@Autowired
 	TicketService service;
 	
-	@PostMapping("/createticket")
+	@PostMapping("/ticket")
 	public Ticket createTicket(@RequestBody Ticket ticket)
 	{
 		return service.createTicket(ticket);
 	}
 	
 	
-	@GetMapping("/fetch/alltickets")
+	@GetMapping("/tickets")
 	public Iterable<Ticket> getAllTickets()
 	{
 		return service.getAllTickets();
 	}
 	
-	@GetMapping("/fetch/ticket/agent")
-	public Iterable<Ticket> getTicketByAgent(@RequestParam String agentName)
+	@GetMapping("/ticket/agent/{agentname}")
+	public Iterable<Ticket> getTicketByAgent(@PathVariable("agentname") String agentName)
 	{
 		return service.findByAgentName(agentName);
 	}
 	
-	@GetMapping("/fetch/ticket/customer")
-	public Iterable<Ticket> getTicketByCustomer(@RequestParam String customerName)
+	@GetMapping("/ticket/customer/{customername}")
+	public Iterable<Ticket> getTicketByCustomer(@PathVariable("customername") String customerName)
 	{
 		return service.findByCustomerName(customerName);
 	}
 	
-	@GetMapping("/fetch/ticket/status")
-	public Iterable<Ticket> getTicketStatus(@RequestParam String status)
+	@GetMapping("/tickets/status/{status}")
+	public Iterable<Ticket> getTicketStatus(@PathVariable("status") String status)
 	{
 		return service.findByStatus(status);
 	}
 	
-	@GetMapping("/fetch/{ticketid}")
+	@GetMapping("/ticket/{ticketid}")
 	public Ticket getTicketById(@PathVariable("ticketid") long ticketId)
 	{
 		return service.findById(ticketId);
@@ -71,14 +71,14 @@ public class TicketController {
 		return service.updateStatus(id, status);
 	}
 	
-	@PostMapping("/response/ticket")
+	@PostMapping("/ticket/response")
 	public TicketResponse ticketResponse(@RequestParam long ticketid,@RequestParam long agentid,@RequestParam String response)
 	{
 		TicketResponse ticketResponse = new TicketResponse(ticketid, agentid, response);
 		return service.addResponse(ticketResponse);
 	}
 	
-	@DeleteMapping("/ticket/delete")
+	@DeleteMapping("/ticket")
 	public String deleteTicket(@RequestParam long ticketid)
 	{
 		return service.deleteTickets(ticketid);
