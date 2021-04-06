@@ -110,7 +110,7 @@ public class TicketService {
 	{
 		TicketResponse ticketResponse = ticketRepository.save(response);
 		
-		Email from = new Email("yogesh@sinecycle.com");
+		Email from = new Email("sample@email.com");
 		Email to = new Email("velayutham.sriram@gmail.com");
 		Content content = new Content("text/html", response.getResponse());
 		Mail mail = new Mail(from, "Ticket NO:"+response.getTicketid(), to, content);
